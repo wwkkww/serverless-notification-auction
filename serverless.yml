@@ -15,10 +15,10 @@ provider:
 resources:
   Resources:
     MailQueue: ${file(resources/MailQueue.yml):MailQueue}
-    # MailQueue:
-    #   Type: AWS::SQS::Queue
-    #   Properties:
-    #     QueueName: ${self:custom.mailQueue.name}
+  Outputs:
+    MailQueueArn: ${file(resources/MailQueue.yml):Outputs.MailQueueArn}
+    MailQueueUrl: ${file(resources/MailQueue.yml):Outputs.MailQueueUrl}
+
 functions:
   hello:
     handler: src/handlers/hello.handler
@@ -37,5 +37,6 @@ custom:
   mailQueue:
     name: MailQueue-${self:provider.stage}
     arn: !GetAtt MailQueue.Arn
+    url: !Ref MailQueue # Ref returns the queue URL
   bundle:
     linting: false

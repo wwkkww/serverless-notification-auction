@@ -8,3 +8,13 @@ MailQueue:
     # RedrivePolicy:
     #   deadLetterTargetArn: !GetAtt MailQueueDLQ.Arn
     #   maxReceiveCount: 5
+
+Outputs:
+  MailQueueArn:
+    Value: ${self:custom.mailQueue.arn}
+    Export:
+      Name: ${self:custom.mailQueue.name}-Arn
+  MailQueueUrl:
+    Value: ${self:custom.mailQueue.url}
+    Export:
+      Name: ${self:custom.mailQueue.name}-Url
