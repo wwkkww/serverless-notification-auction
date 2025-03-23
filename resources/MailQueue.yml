@@ -1,0 +1,10 @@
+MailQueue:
+  Type: AWS::SQS::Queue
+  Properties:
+    QueueName: ${self:custom.mailQueue.name}
+    # VisibilityTimeout: 300
+    # MessageRetentionPeriod: 86400
+    # ReceiveMessageWaitTimeSeconds: 20
+    # RedrivePolicy:
+    #   deadLetterTargetArn: !GetAtt MailQueueDLQ.Arn
+    #   maxReceiveCount: 5
